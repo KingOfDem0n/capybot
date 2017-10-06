@@ -4,12 +4,16 @@ from sensor_msgs.msg import LaserScan
 
 def handleNewData(data):
 	midpoint = len(data.ranges)/2
-	print(data.ranges[midpoint])
+	right = data.ranges[120]
+	left = data.ranges[478]
+	
+	print(data.ranges[120])
 	#print(data.ranges[358])
-	if data.ranges[midpoint] > 0.25:
-		drive(1.0,1.0)
-	elif data.ranges[midpoint] <= 0.25:
-		drive(0.0,0.0)
+	#if data.ranges[midpoint] > 0.25:
+		#drive(1.0,1.0)
+	#elif data.ranges[midpoint] <= 0.25:
+		#drive(0.0,0.0)
+	
 
 # Intitalize ros
 rospy.init_node("maze_wanderer")
