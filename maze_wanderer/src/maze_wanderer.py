@@ -6,10 +6,10 @@ from sensor_msgs.msg import LaserScan
 
 i = 0
 def turnRight():
-	drive(2.5,-2.5)
+	drive(3.0,-3.0)
 	i=1
 def turnLeft():
-	drive(-2.5,2.5)
+	drive(-3.0,3.0)
 	i=2
 def forWard():
 	drive(1.0,1.0)
@@ -28,13 +28,14 @@ def handleNewData(data):
 	center = data.ranges[midpoint]
 
 
-	if i == 1 or center <= 0.30:
-	if right >= 0.10:		
-		turnRight()
-	if right <= 0.10:
-		stop()
+
 	if center > 0.30 and i != 1 and i != 2:
 		forWard()
+	if i == 1 or center <= 0.30:
+		if left >= 0.20:		
+			turnRight()
+		if left <= 0.20:
+			stop()
 
 # Intitalize ros
 rospy.init_node("maze_wanderer")
